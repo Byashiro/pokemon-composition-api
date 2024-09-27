@@ -1,0 +1,50 @@
+.newGame-btn {
+    background-color: rgba(255,255,255);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    color: #000000;
+    cursor: pointer;
+    margin: 5px auto;
+    padding: 5px 20px;
+    text-align: center;
+}
+.newGame-btn:hover {
+    /* background-color: rgb(241, 226, 8); */
+    background-color: rgba(255, 0, 0, 1);
+    box-shadow: 0 0 5px 0 rgb(0, 0, 0);
+}
+.btnAudio {
+    background-color: #31363F;
+    border: none;
+    border-radius: 5px;
+    color: #FFFFFF;
+    cursor: pointer;
+    padding: 5px;
+    text-align: center;
+}
+.alert-container {
+    background-color: rgba(0, 0, 0, .3);
+    backdrop-filter: blur(1px);
+    display: flex;
+    height: 100vh;
+    left: 0;
+    position: fixed;
+    top: 0;
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    justify-content: space-around;
+    width: 100%;
+    z-index: 999;
+}
+.alert-message {
+    align-content: center;
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 10px;
+    height: 100px;
+    margin-top: 5px;
+    text-align: center;
+    width: 300px;
+}
+.alert-text{
+    margin: 5px auto;
+    padding: auto;
+}
