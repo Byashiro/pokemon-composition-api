@@ -1,5 +1,6 @@
 <template>
     <section class="pokeStats-container">
+        <h4 class="h4-stats">Estadísticas</h4>
         <div class="div-baseStats">
             <ul class="ul-stats">
                 <li class="li-stats" v-for="baseStat in pokeData.stats" :key="baseStat.name">
@@ -14,7 +15,7 @@
                         </p>
                     </div>
                     <div class="div-progress-bar">
-                        <ProgressBar :typeColor="typeColor" :baseStats="baseStat.stat"/>
+                        <ProgressBar :typeColor="typeColor" :baseStats="convertStats(baseStat.stat)"/>
                     </div>
                 </li>
                 <li class="li-stats">
@@ -45,11 +46,20 @@ const store = pokeDataStore();
 const pokeData = computed(() => store.getPokeData());
 const typeColor = typeColorEsp[pokeData.value.types[0]];
 
+const convertStats = (baseStatRef) => {
+    const minBaseStat = 1;
+    const maxBaseStat = 255;
+    const valueStat  = ((baseStatRef - minBaseStat) / (maxBaseStat - minBaseStat)) * 100;
+    const reoundValue = Math.round(valueStat);
+    return reoundValue;
+}
+
 const totalStats = computed(() => {
     return pokeData.value.stats.reduce((accumulator, currentValue) => {
         return accumulator + currentValue.stat;
     }, 0);
 });
+
 </script>
 
 <style scoped>
@@ -62,9 +72,10 @@ const totalStats = computed(() => {
     width: auto;
 }
 
-.h3-stats {
-    padding: 0;
-    margin: 10px;
+.h4-stats {
+    margin: 5px 20px;
+    /* padding: 0; */
+    /* margin: 10px; */
 }
 
 .div-baseStats {
