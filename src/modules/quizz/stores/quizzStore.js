@@ -12,7 +12,6 @@ const pokeDataStore = defineStore("pokeData", () => {
   let showModal = ref(false);
   let pokeLifes = ref(3);
   let selectedOption = ref(false);
-  
 
   function setPokeDataArray(newPokeDataArray) {
     pokeDataArray.value = newPokeDataArray;
@@ -114,7 +113,7 @@ const pokeDataStore = defineStore("pokeData", () => {
     setPokeLifes,
     getPokeLifes,
     setSelectedOption,
-    getSelectedOption
+    getSelectedOption,
   };
 });
 

@@ -16,7 +16,6 @@ import { pokeDataStore } from '../stores/quizzStore.js';
 const store = pokeDataStore();
 const pokeDataArray = computed(() => store.getPokeDataArray());
 const getIsDisabled = computed(() => store.getIsDisabled());
-// const emit = defineEmits(['checkAnswer']);
 </script>
 
 <style scoped>

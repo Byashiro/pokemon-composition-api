@@ -3,6 +3,7 @@ import { defineAsyncComponent } from "vue";
 import PokemonQuizz from "../pages/PokemonQuizz.vue";
 import PokemonData from "../components/PokemonData.vue";
 import PokemonDescription from "../components/PokemonDescription.vue";
+import PokemonStats from "../components/PokemonStats.vue";
 
 const routes = [
   {
@@ -19,6 +20,11 @@ const routes = [
             path: '/quizz/data/:id/description',
             name: 'description',
             component: PokemonDescription,
+          },
+          {
+            path: '/quizz/data/:id/stats',
+            name: 'stats',
+            component: PokemonStats,
           },
         ],
       },

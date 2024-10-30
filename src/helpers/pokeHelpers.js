@@ -1,4 +1,4 @@
-const typeEs = {
+const typeNameEs = {
   normal: "Normal",
   fire: "Fuego",
   water: "Agua",
@@ -17,6 +17,27 @@ const typeEs = {
   dark: "Siniestro",
   steel: "Acero",
   fairy: "Hada",
+};
+
+const typeColorEsp = {
+  Normal: "#A8A77A",
+  Fuego: "#EE8130",
+  Agua: "#6390F0",
+  Eléctrico: "#F7D02C",
+  Planta: "#7AC74C",
+  Hielo: "#96D9D6",
+  Lucha: "#C22E28",
+  Veneno: "#A33EA1",
+  Tierra: "#E2BF65",
+  Volador: "#A98FF3",
+  Psíquico: "#F95587",
+  Bicho: "#A6B91A",
+  Roca: "#B6A136",
+  Fantasma: "#735797",
+  Dragón: "#6F35FC",
+  Siniestro: "#705746",
+  Acero: "#B7B7CE",
+  Hada: "#D685AD",
 };
 
 const colours = {
@@ -40,13 +61,50 @@ const colours = {
   fairy: "#D685AD",
 };
 
+const pokedexEs = {
+  "national": "Nacional",
+  "kanto": "Kanto",
+  "original-johto": "Original Johto",
+  "hoenn": "Original Hoenn",
+  "original-sinnoh": "Original Sinnoh",
+  "extended-sinnoh": "Extended Sinnoh",
+  "updated-johto": "Updated Johto",
+  "original-unova": "Original Unova",
+  "updated-unova": "Updated Unova",
+  "conquest-gallery": "Gallery",
+  "kalos-central": "Central Kalos",
+  "kalos-coastal": "Coastal Kalos",
+  "kalos-mountain": "Mountain Kalos ",
+  "updated-hoenn": "New Hoenn",
+  "original-alola": "Original Alola",
+  "original-melemele": "Original Melemele",
+  "original-akala": "Original Akala",
+  "original-ulaula": "Original Ula'ula",
+  "original-poni": "Original Poni",
+  "updated-alola": "Updated Alola",
+  "updated-melemele": "Updated Melemele",
+  "updated-akala": "Updated Akala",
+  "updated-ulaula": "Updated Ula'ula",
+  "updated-poni": "Updated Poni",
+  "letsgo-kanto": "Let’s Go Kanto",
+  "galar": "Galar",
+  "isle-of-armor": "Isle of Armor",
+  "crown-tundra": "Crown Tundra",
+  "hisui": "Hisui",
+  "paldea": "Paldea",
+  "kitakami": "Kitakami",
+  "blueberry": "Paldea"
+};
+
 const statsEs = {
-  "hp": "Ps",
+  "hp": "PS",
   "attack": "Ataque",
   "defense": "Defensa",
-  "special-attack": "At. esp.",
-  "special-defense": "Def. esp.",
+  "special-attack": "Atq. Especial",
+  "special-defense": "Def. Especial",
   "speed": "Velocidad",
+  "accuracy": "Precisión",
+  "evasion": "Evasión",
 };
 
 const evoItems = {
@@ -91,4 +149,4 @@ const evoItems = {
   "peat-block": "sin traducción",
 };
 
-export { typeEs, colours, statsEs, evoItems };
+export { typeNameEs, typeColorEsp, colours, pokedexEs, statsEs, evoItems };
