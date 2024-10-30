@@ -33,7 +33,7 @@
 import { ref, onMounted, computed, watch } from "vue";
 import { useRouter } from 'vue-router';
 
-import { getPokeOptions } from "../helpers/getPokeApiData.js";
+import { getPokeData } from "../../../helpers/getPokeApiData.js";
 import { getPokeOpt } from "../helpers/getPokeApiDataOpt.js";
 
 import { pokeDataStore } from "../stores/quizzStore";
@@ -45,38 +45,45 @@ import pokeBallLife from "../assets/pokeball_life.gif";
 
 const router = useRouter();
 const store = pokeDataStore();
-const getPokeData = computed(() => store.getPokeData());
+const getSelectedPokeID = computed(() => store.getSelectedPokeID());
 const getPokeLifes = computed(() => store.getPokeLifes());
 const getShowModal = computed(() => store.getShowModal());
 const getAnswerCorrect = computed(() => store.getAnswerCorrect());
 const getDataStoreLoading = computed(() => store.getDataStoreLoading());
 const getSelectedOption = computed(() => store.getSelectedOption());
 
-
 const fetchRandomPokemon = async () => {
   try {
-    const pokeDataArray = await getPokeOptions();
+    const pokeDataArray = await getPokeOpt();
     store.setPokeDataArray(pokeDataArray);
     const randomIndex = Math.floor(Math.random() * pokeDataArray.length);
-    const pokeData = pokeDataArray[randomIndex];
-    store.setPokeData(pokeData);
+    const pokeRamdomID = (pokeDataArray[randomIndex]).id;
+    store.setSelectedPokeID(pokeRamdomID);
+    fetchPokeData(pokeRamdomID);
     store.setDataStoreLoading(true);
   } catch (error) {
-    console.log("Error al consumir la API getPokeOptions", error);
+    console.log("Error al consumir la API getPokeOpt", error);
   }
 };
+
+const fetchPokeData = async (pokeId) => {
+  try {
+    const pokeData = await getPokeData(pokeId);
+    store.setPokeData(pokeData);
+  } catch (error) {
+    console.log("Error al consumir la API getPokeData", error);    
+  }
+ }
 
 const checkAnswer = async (selectedId) => {
   store.setShowPokemon(true);
   store.setIsDisabled(true);
-  store.setSelectedPokeID(selectedId);
 
-  if (selectedId === getPokeData.value.id) {
+  if (selectedId === getSelectedPokeID.value) {
     store.setShowModal(true);
     store.setAnswerCorrect(true);
     store.setSelectedOption(true);
-    router.push({ name: 'description', params: { id: getPokeData.value.id } });
-    // handleSelectedQuestion();
+    router.push({ name: 'description', params: { id: getSelectedPokeID.value } });
   } else {
     let minusPokeLifes = (getPokeLifes.value) - 1;
     store.setPokeLifes(minusPokeLifes);
@@ -86,13 +93,13 @@ const checkAnswer = async (selectedId) => {
   }
 };
 
-// const handleSelectedQuestion = () => {
-//   if (getSelectedOption) {
-//     router.push({ name: 'description', params: { id: getPokeData.value.id } });
-//   } else {
-//     router.push({ name: 'quizz' });
-//   }
-// }
+const handleSelectedQuestion = () => {
+  if (getSelectedOption) {
+    router.push({ name: 'description', params: { id: getSelectedPokeID.value } });
+  } else {
+    router.push({ name: 'quizz' });
+  }
+}
 
 const againGame = () => {
   updateStatus();
@@ -106,7 +113,6 @@ const newGame = () => {
 };
 
 const startNewGame = () => {
-  router.push({ name: 'quizz' });
   updateStatus();
   store.setPokeLifes(3);
   fetchRandomPokemon();
@@ -123,8 +129,8 @@ const updateStatus = () => {
 }
 
 onMounted(() => {
-  router.push({ name: 'quizz' });
-  updateStatus();
+  // router.push({ name: 'quizz' });
+  // updateStatus();
   fetchRandomPokemon();
 });
 

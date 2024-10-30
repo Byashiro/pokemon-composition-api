@@ -11,17 +11,32 @@
           <h3 class="type-title">Tipo(s):</h3>
           <ul class="type-ul">
             <li v-for="(pokeType, index) in getPokeData.types" :key="index" class="type-li"
-              :style="{ backgroundColor: typeColor[pokeType.toLowerCase()] }">
-              {{ typeEsp[pokeType.toLowerCase()] }}
+              :style="{ backgroundColor: typeColor[pokeType] }">
+              {{ pokeType }}
             </li>
           </ul>
         </section>
         <section class="pokeData-info-container">
           <div class="pokeData-div-nav">
             <nav class="nav-container">
-              <router-link class="nav-options" :to="{ name: 'description', params: { id: getPokeData.id } }"
-                :class="{ 'is-active': activeLink === 'description' }" @click="setActiveLink('description')">
+              <router-link 
+                class="nav-options"
+                :class="{ 'is-active': activeLink === 'description' }" 
+                @click="setActiveLink('description')"
+                :to="{ name: 'description', params: { id: getPokeData.id } }"
+                :style="{ backgroundColor: typeColor[getPokeData.types[0]], filter: `brightness(90%)` }"
+              >                
                 Descripción
+              </router-link>
+
+              <router-link 
+                class="nav-options"
+                :class="{ 'is-active': activeLink === 'stats' }" 
+                @click="setActiveLink('stats')"
+                :to="{ name: 'stats', params: { id: getPokeData.id } }"
+                :style="{ backgroundColor: typeColor[getPokeData.types[0]], filter: `brightness(90%)` }"
+              >                
+                Estadísticas
               </router-link>
             </nav>
           </div>
@@ -41,19 +56,20 @@
 
 <script setup>
 import { ref, computed, onMounted } from 'vue';
-import { useRouter, onBeforeRouteLeave } from 'vue-router';
+// import { useRouter, onBeforeRouteLeave } from 'vue-router';
 import { pokeDataStore } from '../stores/quizzStore.js';
-import { colours, typeEs } from '../../../helpers/pokeHelpers.js';
+import { typeColorEsp } from '../../../helpers/pokeHelpers.js';
 import PokemonPicture from "../components/PokemonPicture.vue";
 
 const store = pokeDataStore();
 const getPokeData = computed(() => store.getPokeData());
-const typeColor = colours;
-const typeEsp = typeEs;
+const typeColor = typeColorEsp;
 const activeLink = ref('description');
-const typeColorOpt = ref('');
-const router = useRouter();
-const returnPage = ref(false);
+
+
+// const typeColorOpt = ref('');
+// const router = useRouter();
+// const returnPage = ref(false);
 
 // defineProps({
 //   newGame: {
@@ -184,6 +200,12 @@ h1 {
   text-shadow: 2px 2px 10px #000000 !important;
 }
 
+.is-active {
+  color: #ffffff !important;
+  filter: brightness(100%) !important;
+  text-shadow: 2px 2px 10px #000000 !important;
+}
+
 .nav-info-container {
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.7);
   height: 90%;
@@ -205,12 +227,6 @@ h1 {
 .nav-container::-webkit-scrollbar-thumb {
   background: #888888;
   border-radius: 5px;
-}
-
-.is-active {
-  color: #ffffff !important;
-  filter: brightness(100%) !important;
-  text-shadow: 2px 2px 10px #000000 !important;
 }
 
 @media (max-width: 800px) {

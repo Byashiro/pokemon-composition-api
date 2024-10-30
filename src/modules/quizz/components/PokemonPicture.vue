@@ -10,11 +10,11 @@ import { computed } from 'vue';
 import { pokeDataStore } from '../stores/quizzStore.js';
 
 const store = pokeDataStore();
-const pokeData = computed(() => store.getPokeData());
+const pokeID = computed(() => store.getSelectedPokeID());
 const getShowPokemon = computed(() => store.getShowPokemon());
 
 const pokeImg = computed(() => {
-    return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokeData.value.id}.png`;
+    return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokeID.value}.png`;
 });
 
 </script>

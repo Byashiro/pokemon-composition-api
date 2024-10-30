@@ -1,7 +1,7 @@
 <template>
     <section class="pokeDesc-container">
         <h4 class="pokeDesc-h4">Descripción:</h4>
-        <p class="pokeDesc-p">{{ getPokeData.dataSpecies.description }}</p>
+        <p class="pokeDesc-p">{{ getPokeData.description }}</p>
     </section>
     <section class="wh-container">
         <div class="div-w">
@@ -12,37 +12,48 @@
         </div>
     </section>
     <section class="pokeDesc-abilities-container">
-        <!-- <div class="div-na">
+        <div class="div-na">
             <p class="p-na"><b>Habilidad:</b></p>
-            <div class="div-normalAbility" v-for="normalAbility in pokeDataObj.abilities?.normal" :key="normalAbility">
-                <p class="p-na-name" @mouseover="showDescription(normalAbility)" @mouseleave="hideDescription">
-                    {{ normalAbility.name }}
+            <div class="div-normalAbility" v-for="normalA in getPokeData.abilities?.normalAbility" :key="normalA">
+                <p class="p-na-name" @mouseover="showDescription(normalA)" @mouseleave="hideDescription"><!--@mouseleave="hideDescription"-->
+                    {{ normalA.name }}
                 </p>
             </div>
         </div>
 
-        <div class="div-ha" v-if="hiddenAbility == true">
-            <p class="p-ha"><b>Hab. oculta:</b></p>
-            <div v-for="hiddenAbility in pokeDataObj.abilities?.hidden" :key="hiddenAbility" class="div-hiddenAbility">
-                <p class="p-ha-name" @mouseover="showDescription(hiddenAbility)" @mouseleave="hideDescription">
-                    {{ hiddenAbility.name }}
+        <div class="div-ha" v-if="hiddenAbility === true">
+            <p class="p-ha"><b>Habilidad oculta:</b></p>
+            <div class="div-hiddenAbility" v-for="hiddenA in getPokeData.abilities?.hiddenAbility" :key="hiddenA">
+                <p class="p-ha-name" @mouseover="showDescription(hiddenA)" @mouseleave="hideDescription">
+                    {{ hiddenA.name }}
                 </p>
             </div>
         </div>
 
         <Transition class="description-modal">
-            <p v-if="showDescriptionModal"> {{ descriptionToShow }} </p>
-        </Transition> -->
+            <p v-if="showModalAbility"> {{ descriptionAbility }} </p>
+        </Transition>
     </section>
 </template>
 
 <script setup>
-import { computed } from 'vue';
+import { ref, computed } from 'vue';
 import { pokeDataStore } from '../stores/quizzStore.js';
 
 const store = pokeDataStore();
 const getPokeData = computed(() => store.getPokeData());
+const showModalAbility = ref(false);
+const descriptionAbility = ref('');
+const hiddenAbility = getPokeData.value.abilities.hiddenAbility.length > 0 ? true : false;
 
+const showDescription = (normalA) => {
+    showModalAbility.value = true;
+    descriptionAbility.value = normalA.description;
+};
+
+const hideDescription = () => {
+    showModalAbility.value = false;
+};
 </script>
 
 <style scoped>
