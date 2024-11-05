@@ -11,6 +11,30 @@
   import bgPokeDay from './assets/bg-poke-day.png';
   import bgPokeSunset from './assets/bg-poke-sunset.png';
   import bgPokeNight from './assets/bg-poke-night.png';
+  import { v4 as uuidv4 } from "uuid";
+  import { userStore } from './stores/userStore';
+
+  let uStore = userStore();
+  let userId = sessionStorage.getItem('userId');
+
+  if (!userId) {
+    userId = (uuidv4()).substring(0, 13);
+    sessionStorage.setItem('userId', userId);
+  }
+
+  uStore.initializeUser(userId);
+
+  // uStore.updateUserData(userId, {
+  //   typeModule: 'quizz',
+  //   gamePoints: 1
+  // });
+
+  const currentUserData = uStore.getUserData(userId);
+  console.log("currentUserData: ", currentUserData);
+
+  
+  // console.log("userId: ", userId);
+  // const getUserStore = computed(() => store.getUserStore());
 
   let refTime = ref(getConvertTime());
   let imgValue = ref();
@@ -26,7 +50,7 @@
       return imgValue.value = bgPokeNight;
     }
   });
-  
+
   watchEffect(() => {
     const interval = setInterval(() => {
       refTime.value = getConvertTime();

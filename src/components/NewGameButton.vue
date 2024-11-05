@@ -3,7 +3,7 @@
 </template>
 
 <script setup>
-import { pokeDataStore } from '../stores/quizzStore';
+import { pokeDataStore } from '../modules/quizz/stores/quizzStore';
 const store = pokeDataStore();
 
 const newGame = () => {
