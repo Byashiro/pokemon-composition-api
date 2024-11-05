@@ -93,13 +93,13 @@ const checkAnswer = async (selectedId) => {
   }
 };
 
-const handleSelectedQuestion = () => {
-  if (getSelectedOption) {
-    router.push({ name: 'description', params: { id: getSelectedPokeID.value } });
-  } else {
-    router.push({ name: 'quizz' });
-  }
-}
+// const handleSelectedQuestion = () => {
+//   if (getSelectedOption) {
+//     router.push({ name: 'description', params: { id: getSelectedPokeID.value } });
+//   } else {
+//     router.push({ name: 'quizz' });
+//   }
+// }
 
 const againGame = () => {
   updateStatus();

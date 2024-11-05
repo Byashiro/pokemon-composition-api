@@ -20,14 +20,14 @@
 </script>
 
 <style scoped>
-.home-container {
-    /* display: flex;
-    flex-direction: column; */
-    /* align-content: space-between; */
-    /* margin: 20px; */
-    /* width: auto; */
-    /* height: auto; */
-}
+/* .home-container {
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+    margin: 20px;
+    width: auto;
+    height: auto;
+} */
 .home-header {
     background-color: rgb(0, 0, 0, 0.5);
     box-shadow: inset 0 -1px 3px rgba(255, 255, 255, 0.9);

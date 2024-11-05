@@ -2,7 +2,7 @@
   <article class="pokeData-container">
     <section class="pokeData-modal">
       <header class="pokeData-header">
-        <h1>¡Felicidades, el Pokémon es <b>{{ getPokeData.name.toUpperCase() }}</b>!</h1>
+      <!-- <h1>¡Felicidades, el Pokémon es <b>{{ getPokeData.name.toUpperCase() }}</b>!</h1> -->
       </header>
       <article class="pokeData-body">
         <section class="pokeData-img-container">
